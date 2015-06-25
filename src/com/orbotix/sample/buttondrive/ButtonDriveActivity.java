@@ -84,28 +84,34 @@ public class ButtonDriveActivity extends Activity {
         // Find the heading, based on which button was clicked
         final float heading;
         switch (v.getId()) {
+            case R.id.go_button:
+                setSphero(90f, 0.5f);
+                setSphero(180f, 0.5f);
+                setSphero(270f, 1f);
+                setSphero(0f, 1f);
+                setSphero(35f, 0.2f);
+                setSphero(270, 1f);
 
-            case R.id.ninety_button:
-                heading = 90f;
-                break;
-
-            case R.id.one_eighty_button:
-                heading = 180f;
-                break;
-
-            case R.id.two_seventy_button:
-                heading = 270f;
                 break;
 
             default:
-                heading = 0f;
+                setSphero(1f, 1f);
                 break;
         }
 
-        // Set speed. 60% of full speed
-        final float speed = 0.6f;
 
-        // Roll robot
-        mRobot.drive(heading, speed);
+    }
+    public void setSphero(float heading, float speed)
+    {
+        final float direction = heading;
+        final float velocity = speed;
+        mRobot.drive(direction, velocity);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            // handle the exception...
+            // For example consider calling Thread.currentThread().interrupt(); here.
+        }
     }
 }
