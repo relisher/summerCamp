@@ -85,29 +85,30 @@ public class ButtonDriveActivity extends Activity {
         final float heading;
         switch (v.getId()) {
             case R.id.go_button:
-                setSphero(90f, 0.5f);
-                setSphero(180f, 0.5f);
-                setSphero(270f, 1f);
-                setSphero(0f, 1f);
-                setSphero(35f, 0.2f);
-                setSphero(270, 1f);
+                setSphero(90f, 0.5f, 500);
+                setSphero(180f, 0.5f, 500);
+                setSphero(270f, 1f, 500);
+                setSphero(0f, 1f, 500);
+                setSphero(35f, 0.2f, 500);
+                setSphero(270, 1f, 500);
 
                 break;
 
             default:
-                setSphero(1f, 1f);
+                setSphero(1f, 0f, 10000);
                 break;
         }
 
 
     }
-    public void setSphero(float heading, float speed)
+    public void setSphero(float heading, float speed, int milliSeconds)
     {
         final float direction = heading;
+        final int time = milliSeconds;
         final float velocity = speed;
         mRobot.drive(direction, velocity);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(time);
         } catch (InterruptedException e) {
             e.printStackTrace();
             // handle the exception...
